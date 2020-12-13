@@ -72,7 +72,7 @@ const tokenList: Token[] = [
     collateral: true,
     defaultOracleType: 3,
     decimals: 18,
-    logoUrl: `${process.env.PUBLIC_URL}/logo.png`,
+    logoUrl: `${process.env.PUBLIC_URL}/duck_logo.png`,
   },
   {
     addresses: {
@@ -445,8 +445,6 @@ export const tokenAddressesWithParameters: ContractAddresses[] = [
   colMockAddresses,
 ]
 
-export const Q112 = BigInt('0x10000000000000000000000000000')
-
 export const defaultBalanceList = chainId => [tokenAddressesBySymbol.COL[chainId], tokenAddressesBySymbol.DUCK[chainId]]
 
 export const websocketOptions = {
@@ -505,13 +503,13 @@ export const logoBySymbol = _.keyBy([...logosAndSymbolsMainAssetAndPredefined, .
 
 const ethRPCURL = isRinkeby
   ? 'https://rinkeby.infura.io/v3/db72eb2275564c62bfa71896870d8975'
-  : // : 'https://mainnet.infura.io/v3/32528b13d24c4a139a35e6f95c0c94b8'
-    'https://mainnet.infura.io/v3/9b6144934ce44f68b1d749602bfad401'
+  : 'https://mainnet.infura.io/v3/32528b13d24c4a139a35e6f95c0c94b8'
+// 'https://mainnet.infura.io/v3/9b6144934ce44f68b1d749602bfad401'
 
 export const ethWebsocketURL = isRinkeby
   ? 'wss://rinkeby.infura.io/ws/v3/db72eb2275564c62bfa71896870d8975'
-  : // : 'wss://mainnet.infura.io/ws/v3/32528b13d24c4a139a35e6f95c0c94b8'
-    'wss://mainnet.infura.io/ws/v3/9b6144934ce44f68b1d749602bfad401'
+  : 'wss://mainnet.infura.io/ws/v3/32528b13d24c4a139a35e6f95c0c94b8'
+// 'wss://mainnet.infura.io/ws/v3/9b6144934ce44f68b1d749602bfad401'
 
 export const web3Provider: Web3 = new Web3(new Web3.providers.WebsocketProvider(ethWebsocketURL, websocketOptions))
 
