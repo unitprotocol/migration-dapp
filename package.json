@@ -1,0 +1,71 @@
+{
+  "name": "unit-protocol-migration",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@rehooks/local-storage": "^2.4.0",
+    "@uniswap/sdk": "^3.0.3",
+    "@web3-react/core": "^6.1.1",
+    "@zoltu/ethereum-crypto": "^2.1.3",
+    "@zoltu/ethereum-fetch-json-rpc": "^13.0.1",
+    "axios": "0.19.2",
+    "big-integer": "^1.6.48",
+    "bignumber.js": "9.0.0",
+    "ethereumjs-util": "^7.0.4",
+    "ethers": "^5.0.0",
+    "grommet": "2.7.6",
+    "grommet-icons": "^4.4.0",
+    "lodash": "4.17.15",
+    "query-string": "6.12.1",
+    "react": "16.8.6",
+    "react-copy-to-clipboard": "^5.0.2",
+    "react-dom": "16.8.6",
+    "react-scripts": "3.4.3",
+    "react-toast-notifications": "^2.4.0",
+    "rxjs": "^6.6.2",
+    "styled-components": "4.3.2",
+    "web3": "^1.2.11"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-class-property": "^1.1.0",
+    "eslint-plugin-jest": "^22.2.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-simple-import-sort": "^4.0.0",
+    "lint-staged": "^7.3.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.19.1",
+    "typescript": "3.4.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint . --ext .ts,.tsx,.js",
+    "lint-staged": "lint-staged",
+    "generate": "cd src/contracts && node abiGen.js",
+    "prettier:run-all": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "types": "tsc"
+  },
+  "pre-commit": [
+    "prettier:run-all",
+    "types",
+    "lint"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
