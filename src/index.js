@@ -1,4 +1,4 @@
-import { Box, Grommet, Heading } from 'grommet'
+import { Box, Grommet } from 'grommet'
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
@@ -32,7 +32,11 @@ function App() {
         >
           <HeaderWrapper>
             <Box align="center" as="header" direction="row" flex={false} gap="medium" justify="between">
-              <Heading level={2}>Unit Protocol</Heading>
+              <img
+                src={`${process.env.PUBLIC_URL}/unit_logo.png`}
+                style={{ maxWidth: '178px', maxHeight: '100px' }}
+                alt="unit-protocol-logo"
+              />
               <MetaMaskButton />
             </Box>
           </HeaderWrapper>
