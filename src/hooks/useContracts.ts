@@ -4,7 +4,7 @@ import { submitMigrationQuack } from '../contracts/migration/contractFunctions'
 const migrate = async (metamask: any, colAmount: string, skipGasEstimation = false, onSuccessfulSend: Function) => {
   const options: any = {}
   if (skipGasEstimation) {
-    options.gasLimit = 900000
+    options.gasLimit = 100000
   }
   const { signer, chainId } = metamask
 
