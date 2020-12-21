@@ -3,14 +3,14 @@ import React from 'react'
 
 import { defaultBalanceList } from '../constants'
 import useBalances from '../hooks/useBalances'
-import useMetamask from '../hooks/useMetamask'
+import useWeb3Wallet from '../hooks/useWeb3Wallet'
 import Spinner from './ui/Spinner'
 import TableBox from './ui/TableBox'
 import TokenWithLogo from './ui/TokenWithLogo'
 
 const Balances = () => {
   const { loading, balances } = useBalances()
-  const { chainId } = useMetamask()
+  const { chainId } = useWeb3Wallet()
   const filteredBalances = Object.values(balances).filter(() => [...defaultBalanceList(chainId)])
 
   return (

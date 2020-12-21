@@ -5,7 +5,7 @@ import { getErc20TokenBalanceOf } from '../contracts/erc20token/contractFunction
 import { trackErc20TokenTransfer } from '../contracts/erc20token/eventListeners'
 import eventTracker from '../contracts/websocketEventTracker'
 import { getDisplayAmountFromAtomicAmount } from '../utils'
-import metamaskSubject from './metamaskSubject'
+import web3WalletSubject from './web3WalletSubject'
 
 const initialState: BalancesState = {
   loading: false,
@@ -114,7 +114,7 @@ const initializeBalanceTracking = chainId => {
   })
 }
 
-metamaskSubject.subscribe(async providerState => {
+web3WalletSubject.subscribe(async providerState => {
   if (providerState.signer) {
     await eventTracker.clearSubscriptionsOfAddress(walletAddress)
     walletAddress = providerState.address

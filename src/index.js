@@ -7,7 +7,7 @@ import Balances from './components/Balances'
 import MetaMaskButton from './components/MetaMaskButton'
 import Migration from './components/Migration'
 import Transactions from './components/Transactions'
-import useMetamask from './hooks/useMetamask'
+import useWeb3Wallet from './hooks/useWeb3Wallet'
 
 const AppContainer = styled(Box)`
   max-width: 1100px;
@@ -20,7 +20,7 @@ const HeaderWrapper = styled.div`
 `
 
 function App() {
-  const { isConnected } = useMetamask()
+  const { isConnected } = useWeb3Wallet()
   return (
     <Suspense fallback={null}>
       <Box align="center" justify="center" direction="row">

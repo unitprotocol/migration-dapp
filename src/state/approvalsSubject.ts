@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs'
 import { colAddresses, contractAddresses, duckAddresses, tokenSymbolsByAddress } from '../constants'
 import { getErc20TokenAllowance } from '../contracts/erc20token/contractFunctions'
 import { trackErc20TokenApproval } from '../contracts/erc20token/eventListeners'
-import metamaskSubject from './metamaskSubject'
+import web3WalletSubject from './web3WalletSubject'
 
 const tokens = [{ addresses: colAddresses }]
 
@@ -87,7 +87,7 @@ const initializeApprovalsSubject = async providerState => {
   })
 }
 
-metamaskSubject.subscribe(async providerState => {
+web3WalletSubject.subscribe(async providerState => {
   if (providerState.signer) {
     initializeApprovalsSubject(providerState)
   }

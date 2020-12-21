@@ -5,14 +5,14 @@ import { colAddresses, duckAddresses, MIGRATION_SECTION_NAME } from '../constant
 import { useApprovals } from '../hooks/useApprovals'
 import useBalances from '../hooks/useBalances'
 import useContracts from '../hooks/useContracts'
-import useMetamask from '../hooks/useMetamask'
+import useWeb3Wallet from '../hooks/useWeb3Wallet'
 import { getAtomicAmountFromDisplayAmount, getDisplayAmountFromAtomicAmount } from '../utils'
 import PositionManipulationTable from './ui/PositionManipulationTable'
 
 const Migration = () => {
   const { balances } = useBalances()
   const { migrate } = useContracts()
-  const { signer, isConnected: isAccountConnected, chainId } = useMetamask()
+  const { signer, isConnected: isAccountConnected, chainId } = useWeb3Wallet()
   const [colAmount, setColAmount] = useState('0')
 
   const maxColDeposit = balances[colAddresses[chainId]]

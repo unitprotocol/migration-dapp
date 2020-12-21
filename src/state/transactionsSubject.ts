@@ -78,7 +78,7 @@ export async function sendTransaction(contract, fnName, prm) {
         error: true,
       }
     }
-    prm[prm.length - 1] = { ...prm[prm.length - 1], gasLimit: Number(gas) + 150_000 }
+    prm[prm.length - 1] = { ...prm[prm.length - 1], gasLimit: Number(gas) + 10_000 }
   }
   let gasPrice = await web3Provider.eth.getGasPrice()
   gasPrice = String(Number(gasPrice) * 110)

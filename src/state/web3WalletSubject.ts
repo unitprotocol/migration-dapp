@@ -19,6 +19,6 @@ const initialState: MetamaskState = {
   chainId: 1,
 }
 
-const metamaskSubject: BehaviorSubject<MetamaskState> = new BehaviorSubject(initialState)
+const web3WalletSubject: BehaviorSubject<MetamaskState> = new BehaviorSubject(initialState)
 
-export default metamaskSubject
+export default web3WalletSubject

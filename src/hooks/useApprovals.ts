@@ -1,7 +1,7 @@
 import { colAddresses, duckAddresses, MAX_UINT } from '../constants'
 import { submitErc20TokenApprove } from '../contracts/erc20token/contractFunctions'
 import approvalsSubject, { ApprovalsState } from '../state/approvalsSubject'
-import useMetamask from './useMetamask'
+import useWeb3Wallet from './useWeb3Wallet'
 import useSubject from './useSubject'
 
 const approveToken = async (signer: any, tokenAddress: string) => {
@@ -16,7 +16,7 @@ function useApprovals(
 ): {
   approveToken: () => any
 }[] {
-  const { signer, chainId } = useMetamask()
+  const { signer, chainId } = useWeb3Wallet()
   const approvalsState: ApprovalsState = useSubject(approvalsSubject)
 
   const colAllowance = approvalsState.allowances[colAddresses[chainId]]

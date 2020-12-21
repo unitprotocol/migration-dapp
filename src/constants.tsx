@@ -4,15 +4,11 @@ import _ from 'lodash'
 import React from 'react'
 import Web3 from 'web3'
 
-import metamaskSubject from './state/metamaskSubject'
 import { ContractAddresses, Token } from './types/types'
 
 Web3.providers.WebsocketProvider.prototype.sendAsync = Web3.providers.WebsocketProvider.prototype.send
 bn.config({ EXPONENTIAL_AT: 1e9 }) // prevents strings from being rendered in exponential notation
 
-const isRinkeby = metamaskSubject.getValue() && metamaskSubject.getValue().chainId === 4
-
-// Rinkeby
 export const contractAddresses: any = {
   migration: '0x92e187a03b6cd19cb6af293ba17f2745fd2357d5',
   vault: '0xb1cFF81b9305166ff1EFc49A129ad2AfCd7BCf19',
@@ -501,15 +497,15 @@ const logosAndSymbolsPoolTokens = tokens
 
 export const logoBySymbol = _.keyBy([...logosAndSymbolsMainAssetAndPredefined, ...logosAndSymbolsPoolTokens], 'symbol')
 
-const ethRPCURL = isRinkeby
-  ? 'https://rinkeby.infura.io/v3/db72eb2275564c62bfa71896870d8975'
-  : 'https://mainnet.infura.io/v3/32528b13d24c4a139a35e6f95c0c94b8'
-// 'https://mainnet.infura.io/v3/9b6144934ce44f68b1d749602bfad401'
+let _ethRPCURL = 'https://mainnet.infura.io/v3/32528b13d24c4a139a35e6f95c0c94b8'
+let _ethWebsocketURL = 'wss://mainnet.infura.io/ws/v3/32528b13d24c4a139a35e6f95c0c94b8'
+if (process.env.NODE_ENV === 'development') {
+  _ethRPCURL = 'http://192.168.31.166:8545'
+  _ethWebsocketURL = 'ws://192.168.31.166:8546'
+}
 
-export const ethWebsocketURL = isRinkeby
-  ? 'wss://rinkeby.infura.io/ws/v3/db72eb2275564c62bfa71896870d8975'
-  : 'wss://mainnet.infura.io/ws/v3/32528b13d24c4a139a35e6f95c0c94b8'
-// 'wss://mainnet.infura.io/ws/v3/9b6144934ce44f68b1d749602bfad401'
+export const ethRPCURL = _ethRPCURL
+export const ethWebsocketURL = _ethWebsocketURL
 
 export const web3Provider: Web3 = new Web3(new Web3.providers.WebsocketProvider(ethWebsocketURL, websocketOptions))
 
