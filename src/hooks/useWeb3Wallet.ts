@@ -3,10 +3,10 @@ import WalletConnectProvider from '@walletconnect/web3-provider'
 import * as ethers from 'ethers'
 import Web3Modal from 'web3modal'
 
-import isMobile from '../helpers/isMobile'
 import blockSubject from '../state/blockSubject'
 import web3WalletSubject from '../state/web3WalletSubject'
 import useSubject from './useSubject'
+import isMobile from '../helpers/isMobile'
 
 const providerOptions = {
   walletconnect: {
@@ -39,10 +39,9 @@ let provider
 
 // for stupid immutable ethers
 async function initProvider() {
-  if (isMobile() && (window.web3.currentProvider.isTrust || window.web3.currentProvider.isMetaMask)) {
+  if (isMobile() && window.web3 && (window.web3.currentProvider.isTrust || window.web3.currentProvider.isMetaMask)) {
     if (window.ethereum) provider = new ethers.providers.Web3Provider(window.ethereum)
     else if (window.web3) provider = new ethers.providers.Web3Provider(window.web3.currentProvider)
-    await provider.provider.enable()
   } else {
     const web3ModalProvider = await web3Modal.connect()
     provider = new ethers.providers.Web3Provider(web3ModalProvider)
@@ -54,7 +53,7 @@ function useWeb3Wallet() {
   const state = useSubject(web3WalletSubject)
 
   const checkConnection = async () => {
-    if (isMobile() && (window.web3.currentProvider.isTrust || window.web3.currentProvider.isMetaMask)) {
+    if (isMobile() && window.web3 && (window.web3.currentProvider.isTrust || window.web3.currentProvider.isMetaMask)) {
       await connect()
     } else if (web3Modal.cachedProvider) {
       await connect()
@@ -65,24 +64,27 @@ function useWeb3Wallet() {
     updateSubject({
       isConnecting: true,
     })
+    try {
+      if (updateTermsBlock) {
+        localStorage.setItem('termsAccepted', String(blockSubject.getValue().number))
+      }
 
-    if (updateTermsBlock) {
-      localStorage.setItem('termsAccepted', String(blockSubject.getValue().number))
+      await initProvider()
+      if (!provider) {
+        updateSubject({
+          error: '',
+          isConnecting: false,
+          isConnected: false,
+        })
+        return
+      }
+      subscribeProvider()
+
+      await setChainId()
+      await setAccount()
+    } catch (e) {
+      console.error(e)
     }
-
-    await initProvider()
-    if (!provider) {
-      updateSubject({
-        error: '',
-        isConnecting: false,
-        isConnected: false,
-      })
-      return
-    }
-    subscribeProvider()
-
-    await setChainId()
-    await setAccount()
 
     updateSubject({
       isConnecting: false,

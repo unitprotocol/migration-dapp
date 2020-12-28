@@ -499,9 +499,10 @@ export const logoBySymbol = _.keyBy([...logosAndSymbolsMainAssetAndPredefined, .
 
 let _ethRPCURL = 'https://mainnet.infura.io/v3/32528b13d24c4a139a35e6f95c0c94b8'
 let _ethWebsocketURL = 'wss://mainnet.infura.io/ws/v3/32528b13d24c4a139a35e6f95c0c94b8'
+
 if (process.env.NODE_ENV === 'development') {
-  _ethRPCURL = 'http://192.168.31.166:8545'
-  _ethWebsocketURL = 'ws://192.168.31.166:8546'
+  _ethRPCURL = 'https://mainnet.infura.io/v3/5c5d89d5ce034ead8a13e602c63596f5'
+  _ethWebsocketURL = 'wss://mainnet.infura.io/ws/v3/5c5d89d5ce034ead8a13e602c63596f5'
 }
 
 export const ethRPCURL = _ethRPCURL

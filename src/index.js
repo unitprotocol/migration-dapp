@@ -8,6 +8,9 @@ import MetaMaskButton from './components/MetaMaskButton'
 import Migration from './components/Migration'
 import Transactions from './components/Transactions'
 import useWeb3Wallet from './hooks/useWeb3Wallet'
+// css
+import './style/main.css'
+import MainHeader from './components/MainHeader/MainHeader.tsx'
 
 const AppContainer = styled(Box)`
   max-width: 1100px;
@@ -24,26 +27,18 @@ function App() {
   return (
     <Suspense fallback={null}>
       <Box align="center" justify="center" direction="row">
-        <AppContainer
+        <Box
+          className="main-wrap"
           background="white"
           direction="column"
           flex="grow"
           pad={{ horizontal: 'medium', bottom: 'medium' }}
         >
-          <HeaderWrapper>
-            <Box align="center" as="header" direction="row" flex={false} gap="medium" justify="between">
-              <img
-                src={`${process.env.PUBLIC_URL}/unit_logo.png`}
-                style={{ maxWidth: '178px', maxHeight: '100px' }}
-                alt="unit-protocol-logo"
-              />
-              <MetaMaskButton />
-            </Box>
-          </HeaderWrapper>
+          <MainHeader/>
           {isConnected && <Balances />}
           <Migration />
           <Transactions />
-        </AppContainer>
+        </Box>
       </Box>
     </Suspense>
   )
@@ -57,7 +52,7 @@ const myTheme = {
       family: 'Lato',
     },
     colors: {
-      brand: 'rgb(242, 193, 241)',
+      brand: 'rgb(172, 12, 238)',
       // focus: 'rgb(203,0,255)',
     },
   },

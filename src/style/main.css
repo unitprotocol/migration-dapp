@@ -1,0 +1,56 @@
+#WEB3_CONNECT_MODAL_ID {
+  font-family: Lato;
+}
+
+.main-wrap {
+  width: 100%;
+  max-width: 1100px !important;
+}
+#root {
+  overflow: hidden;
+}
+/* header */
+.main-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-header__logo {
+  width: 150px;
+}
+
+.btn {
+  border-radius: .6rem;
+}
+
+.choose-asset__header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .main-header {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+  .main-header__logo {
+    width: 80px;
+  }
+  .btn {
+    font-size: 14px;
+  }
+  .connection {
+    text-align: center;
+  }
+  .choose-asset__header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.balances-block table {
+  width: 100%;
+}

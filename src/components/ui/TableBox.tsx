@@ -16,7 +16,7 @@ interface Props {
 const TableBox = ({ title, data, footer, columns, width }: Props) => {
   return (
     <Container>
-      <Box fill="horizontal" pad="medium">
+      <Box fill="horizontal" pad="medium" className="balances-block">
         <Heading level={3} margin="small">
           {title}
         </Heading>
